@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services - T&P Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-yzJvP7Et14B4uPuD6V1wZzHbVixzghfEMJ8oxfWScivz+dZ6OqzCdN7tHZ3WfDki62SmV0nTZF+uTW/GqqGfHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+        --primary: black;
+        --dark-bg: #121212;
+        --light-bg: #ffffff;
+        --text-dark: #222;
+        --text-light: #ddd;
+    }
+      
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+      
+    body {
+        background: linear-gradient(to right, #f8f8f8, #eef2f3);
+        color: var(--text-dark);
+        transition: background 0.5s, color 0.5s;
+    }
+      
+    body.dark-mode {
+        background: var(--dark-bg);
+        color: var(--text-light);
+    }
+      
+    header {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+    }
+      
+      /* Navigation */
+      .nav {
+        flex-basis: 100%;
+        
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        background-color: black;
+      }
+
+      .nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .nav a {
+        color: white;
+        padding: 0.5rem 1rem;
+        transition: 0.3s;
+      }
+
+      .nav a:hover {
+        background: #1f1f47;
+        border-radius: 5px;
+      }
+
+      
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  display: flex; /* Horizontal row */
+background: linear-gradient(135deg, rgb(21, 22, 22));
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  gap: 2rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.dropdown-column h4 {
+  margin-bottom: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  border-bottom: 2px solidrgb(200, 216, 214);
+  padding-bottom: 4px;
+}
+
+.dropdown-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-column ul li {
+  margin-bottom: 0.6rem;
+}
+
+.dropdown-column ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-column ul li a:hover {
+  background-color:rgb(87, 133, 233);
+  color: #00695c;
+}
+      
+    .logo a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+      
+    .dark-mode-btn {
+        font-size: 1.3rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+    }
+      
+    .hero {
+        background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)),
+                    url('/images/services.png') center no-repeat;
+        background-size: cover; 
+        height: 50vh;
+        width: 100%;
+        padding: 80px 20px 30px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        color: white; 
+        font-size: 2rem;
+    }
+                
+    .hero h1 {
+        font-size: 3rem;
+        color: var(--primary);
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 10px;
+    }
+      
+    .hero p {
+        font-size: 1.2rem;
+        color: #555;
+    }
+      
+    .dark-mode .hero p {
+        color: #aaa;
+    }
+      
+    .services-section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    
+    .service-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #222;
+      transition: all 0.3s ease;
+    }
+    
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    
+    .service-box i {
+      color: #1e88e5;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    .service-box h3 {
+      margin: 10px 0 0;
+      font-size: 20px;
+      color: #333;
+    }
+        
+    /* Footer Styling */
+    .footer {
+      background-color: #282828;
+      color: #fff;
+      padding: 60px 20px 20px;
+      font-family: 'Arial', sans-serif;
+      text-align: left;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    
+    .footer-col {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .footer-col h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: white;
+    }
+    
+    .footer-col p,
+    .footer-col ul {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #bbb;
+    }
+    
+    .footer-col ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+    
+    .footer-col ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-col ul li a:hover {
+      color: #00aaff;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    
+    .social-icon {
+      font-size: 20px;
+      color: #bbb;
+      transition: color 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      color: #00aaff;
+    }
+    
+    .footer-bottom {
+      background-color: #212121;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      color: #bbb;
+      margin-top: 30px;
+    }
+    
+    /* Responsive Design for Smaller Screens */
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+      }
+    
+      .footer-col {
+        margin-bottom: 20px;
+      }
+    }
+          
+    /* Responsive Media Queries */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+      
+        .nav-links {
+            flex-direction: column;
+            gap: 10px;
+        }
+      
+        .footer-container {
+            flex-direction: column;
+            gap: 30px;
+        }
+      
+        .service-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+      
+  </style>
+</head>
+<body>
+
+  <header>
+<nav class="nav" id="nav">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+
+    <li class="dropdown">
+      <a href="#" id="courses-toggle">Courses</a>
+      <div class="dropdown-content" id="courses-dropdown">
+        <div class="dropdown-column">
+          <ul>
+            <li><a href="java.html">Java Developer</a></li>
+            <li><a href="full stack.html">Full Stack</a></li>
+            <li><a href="flutter.html">Flutter</a></li>
+          </ul>
+        </div>
+        <div class="dropdown-column">
+          <ul>
+            <li><a href="web.html">Web Developer</a></li>
+            <li><a href="cyber.html">Cyber Security</a></li>
+            <li><a href="data analyst.html">Data Analyst</a></li>
+          </ul>
+        </div>
+        <div class="dropdown-column">
+          <ul>
+            <li><a href="ml.html">Machine Learning</a></li>
+            <li><a href="iot.html">IoT</a></li>
+            <li><a href="devops.html">DevOps</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="security.html">Security</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+  </header>
+
+  <section class="hero">
+    <h1>Explore Our Services</h1>
+  </section>
+  
+  <section class="services-section">
+    <div class="services-grid">
+  
+      <a href="/services/carrer.html" class="service-box">
+        <i class="fas fa-user-graduate fa-2x"></i>
+        <h3>Career Counseling</h3>
+      </a>
+      
+      <a href="/services/resume.html" class="service-box">
+        <i class="fas fa-file-alt fa-2x"></i>
+        <h3>Resume Building</h3>
+      </a>
+  
+      <a href="/services/mock.html" class="service-box">
+        <i class="fas fa-comments fa-2x"></i>
+        <h3>Mock Interviews</h3>
+      </a>
+  
+      <a href="/services/placement.html" class="service-box">
+        <i class="fas fa-briefcase fa-2x"></i>
+        <h3>Placement Assistance</h3>
+      </a>
+  
+      <a href="/services/workshop.html" class="service-box">
+        <i class="fas fa-chalkboard-teacher fa-2x"></i>
+        <h3>Workshops & Training</h3>
+      </a>
+  
+      <a href="/services/soft skill.html" class="service-box">
+        <i class="fas fa-users fa-2x"></i>
+        <h3>Soft Skills Development</h3>
+      </a>
+    
+      <a href="/services/internship.html" class="service-box">
+        <i class="fas fa-lightbulb fa-2x"></i>
+        <h3>Internship Guidance</h3>
+      </a>
+  
+      <a href="/services/personality.html" class="service-box">
+        <i class="fas fa-user-circle fa-2x"></i>
+        <h3>Personality Development</h3>
+      </a>
+  
+      <a href="/services/aptitude.html" class="service-box">
+        <i class="fas fa-calculator fa-2x"></i>
+        <h3>Aptitude Training</h3>
+      </a>
+  
+      <a href="/services/industry.html" class="service-box">
+        <i class="fas fa-network-wired fa-2x"></i>
+        <h3>Industry Connect</h3>
+      </a>
+  
+      <a href="/services/project.html" class="service-box">
+        <i class="fas fa-project-diagram fa-2x"></i>
+        <h3>Project Assistance</h3>
+      </a>
+  
+      <a href="/services/certification.html" class="service-box">
+        <i class="fas fa-certificate fa-2x"></i>
+        <h3>Certification Support</h3>
+      </a>
+  
+    </div>
+  </section>
+    
+  
+<!-- Footer Start -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>CONTACT US</h3>
+      <p>Saptashringi Apartments, Lane, above Dominos, near Renuka Swaroop Girls High School, Perugate, Sadashiv Peth, Pune, Maharashtra 411030.</p>
+      <p><strong>Phone:</strong> +91 9271271636</p>
+      <p><strong>Email:</strong> training13@gmail.com</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>USEFUL LINKS</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>OUR SERVICES</h3>
+      <ul>
+        <li><a href="/services/carrer.html">Career Counseling</a></li>
+        <li><a href="/services/resume.html">Resume Building</a></li>
+        <li><a href="/services/mock.html">Mock Interviews</a></li>
+        <li><a href="/services/placement.html">Placement Assistance</a></li>
+        <li><a href="/services/workshop.html">Workshop & Training</a></li>
+      </ul>
+    </div>
+
+
+
+    <div class="footer-col">
+      <h3>ABOUT TRAINING & PLACEMENT</h3>
+      <p>In the information technology industry, where change is the only constant, has stood the test of time by providing a long range of IT services at best quality & least cost.</p>
+      <div class="social-links">
+        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2014 - Training & Placement. All Rights Reserved.</p>
+  </div>
+</footer>
+
+  <script>
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+    
+    // Modal functionality
+    function openModal(service) {
+      document.getElementById(service).style.display = "block";
+    }
+
+    function closeModal(service) {
+      document.getElementById(service).style.display = "none";
+    }
+
+    // Close modals when clicked outside the modal content
+    window.onclick = function(event) {
+      const modals = document.getElementsByClassName('modal');
+      for (let modal of modals) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    }
+
+    <!-- Smooth Scroll Script -->
+  document.querySelectorAll('.footer-col ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 50,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+  </script>
+</body>
+</html>

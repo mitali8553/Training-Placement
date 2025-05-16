@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Web Development Course</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+:root {
+  --bg: #ffffff;
+  --text: #222222;
+  --accent: #ff6600;
+  --card-bg: rgba(255, 255, 255, 0.1);
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #f0f0f0;
+  --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navigation */
+.nav {
+  width: 100%;
+  background-color: black;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  position: sticky; /* optional: keeps nav on top */
+  top: 0;
+  z-index: 1000;
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  color: white;
+  padding: 0.75rem 1.2rem;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.nav a:hover {
+  background: #1f1f47;
+}
+
+/* Responsive (Mobile View) */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.5rem 0;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav a {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Dark Mode Toggle */
+.toggle-dark {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card-bg);
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1000;
+}
+body.dark .toggle-dark {
+  background-color: #444;
+}
+
+/* Hero Section */
+.hero {
+  background: url('images/bgweb.jpg') no-repeat center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: black;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+form .btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+form .btn:hover {
+  background-color: #0056b3;
+}
+
+
+/* Section Styling */
+section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Grid Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* WhatsApp Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 24px;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: var(--bg);
+  color: var(--text);
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  color: red;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer {
+  background-color: #282828;
+  color: #fff;
+  padding: 60px 20px 20px;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+  margin-right: 20px;
+}
+.footer-col h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: white;
+}
+.footer-col p,
+.footer-col ul {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #bbb;
+}
+.footer-col ul {
+  padding-left: 20px;
+}
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+.footer-col ul li a {
+  color: #bbb;
+  text-decoration: none;
+}
+.footer-col ul li a:hover {
+  color: blue;
+}
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+.social-icon {
+  font-size: 20px;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+.social-icon:hover {
+  color: blue;
+}
+.footer-bottom {
+  background-color: #212121;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* Info Section */
+.info {
+  background: var(--card-bg);
+  padding: 40px 20px;
+  margin: 40px auto;
+  border-radius: 20px;
+  max-width: 1000px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.info h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+.info-section {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* Features Grid */
+.container {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+.container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: var(--accent);
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+.feature-card {
+  background: var(--card-bg);
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  color: var(--text);
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+.feature-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: var(--accent);
+}
+.feature-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.feature-description {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-col {
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .section-title,
+  .info h2,
+  .container h1 {
+    font-size: 1.6rem;
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+  }
+
+  .info {
+    padding: 20px 15px;
+  }
+
+  .feature-icon {
+    font-size: 32px;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+  }
+
+  .feature-description {
+    font-size: 13px;
+  }
+}
+  </style>
+</head>
+
+<body> 
+
+  <!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <ul class="nav-list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="security.html">Security</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+    <div class="hero" data-aos="fade-in">
+    <div class="glass" data-aos="zoom-in" data-aos-delay="300">
+      <h1>Advanced Web Development Course</h1>
+      <p>Master Web Development to build responsive and dynamic websites using HTML, CSS, JavaScript, modern frameworks, and backend technologies with real-time features and secure integrations!</p>
+      <button class="btn" onclick="openEnquiryModal()" data-aos="fade-up" data-aos-delay="500">Enroll Now</button>
+    </div>
+  </div>
+
+    <div class="modal" id="enquiryModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeEnquiryModal()">✖</span>
+      <h2>Enroll Now</h2>
+      <p>Please fill in your details and we'll contact you shortly.</p>
+      <form>
+        <input type="text" placeholder="Your Name" required><br><br>
+        <input type="email" placeholder="Your Email" required><br><br>
+        <textarea placeholder="Message / Course Interest" required></textarea><br><br>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
+  <section data-aos="fade-up" data-aos-duration="1200">
+    <h2>Web Development Course Modules</h2>
+    <div class="grid">
+      <div class="card" onclick="openModule(1)">
+        <h3>Module 1: Introduction to Web Development</h3>
+        <p>Understand how the web works, types of websites, and the roadmap for full-stack development.</p>
+      </div>
+      <div class="card" onclick="openModule(2)">
+        <h3>Module 2: HTML & CSS Fundamentals</h3>
+        <p>Learn how to structure web pages using HTML5 and style them using modern CSS3 techniques.</p>
+      </div>
+      <div class="card" onclick="openModule(3)">
+        <h3>Module 3: JavaScript Essentials</h3>
+        <p>Dive into the basics of JavaScript including DOM manipulation, events, functions, and ES6+ features.</p>
+      </div>
+      <div class="card" onclick="openModule(4)">
+        <h3>Module 4: Responsive Web Design</h3>
+        <p>Make your websites mobile-friendly using media queries, Flexbox, and Grid layouts.</p>
+      </div>
+      <div class="card" onclick="openModule(5)">
+        <h3>Module 5: Front-End Frameworks</h3>
+        <p>Learn React.js to build fast, scalable single-page applications (SPAs).</p>
+      </div>
+      <div class="card" onclick="openModule(6)">
+        <h3>Module 6: Back-End Development</h3>
+        <p>Build APIs using Node.js and Express.js and handle business logic on the server side.</p>
+      </div>
+      <div class="card" onclick="openModule(7)">
+        <h3>Module 7: Database & Authentication</h3>
+        <p>Use MongoDB to store data and implement secure user authentication using JWT and sessions.</p>
+      </div>
+      <div class="card" onclick="openModule(8)">
+        <h3>Module 8: Deployment & DevOps</h3>
+        <p>Host your projects on platforms like GitHub Pages, Vercel, or Heroku with CI/CD workflows.</p>
+      </div>
+    </div>
+  </section>
+
+
+<!-- ROADMAP INFORMATION -->
+<div class="info">
+  <h2>Roadmap Breakdown</h2>
+  <p id="setup" class="info-section"><strong>Setup & Tools:</strong> Install VS Code, Git, Node.js, and set up a development environment with basic CLI commands.</p>
+  <p id="frontend" class="info-section"><strong>Frontend Basics:</strong> Learn HTML5, CSS3, Flexbox, and responsive design with media queries and Bootstrap.</p>
+  <p id="jsreact" class="info-section"><strong>JavaScript & React:</strong> Master JavaScript ES6+, DOM manipulation, and React fundamentals like components, props, and hooks.</p>
+  <p id="backend" class="info-section"><strong>Backend & APIs:</strong> Create RESTful APIs using Node.js and Express, handle routing, and connect to services.</p>
+  <p id="dbauth" class="info-section"><strong>Database & Auth:</strong> Store data using MongoDB or MySQL, and implement authentication with JWT or session-based login.</p>
+  <p id="deploy" class="info-section"><strong>Deployment:</strong> Deploy full-stack projects on platforms like Vercel, Netlify, or Heroku with environment configs and GitHub.</p>
+</div>
+
+<!-- FEATURES SECTION -->
+<div class="container">
+  <h1>Key Features of Web Development</h1>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <div class="feature-title">Full-Stack Skills</div>
+      <div class="feature-description">Master both frontend and backend development to become a versatile web developer.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💡</div>
+      <div class="feature-title">Real-Time Projects</div>
+      <div class="feature-description">Build projects like portfolios, blogs, e-commerce sites, chat apps, and dashboards.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚛️</div>
+      <div class="feature-title">React Framework</div>
+      <div class="feature-description">Use React to create dynamic single-page applications with reusable components.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔐</div>
+      <div class="feature-title">User Authentication</div>
+      <div class="feature-description">Secure your apps with login systems using JWT, OAuth, and session cookies.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📡</div>
+      <div class="feature-title">REST API Integration</div>
+      <div class="feature-description">Consume and build APIs to connect frontend and backend smoothly.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧪</div>
+      <div class="feature-title">Testing & Debugging</div>
+      <div class="feature-description">Test and debug your code using DevTools, Postman, and unit testing frameworks.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <div class="feature-title">Deployment</div>
+      <div class="feature-description">Deploy live projects using Netlify, Vercel, or cloud platforms with domain setup.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📦</div>
+      <div class="feature-title">Version Control</div>
+      <div class="feature-description">Track and manage your code using Git and host projects on GitHub.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>CONTACT US</h3>
+      <p>Saptashringi Apartments, Lane, above Dominos, near Renuka Swaroop Girls High School, Perugate, Sadashiv Peth, Pune, Maharashtra 411030.</p>
+      <p><strong>Phone:</strong> +91 9271271636</p>
+      <p><strong>Email:</strong> training13@gmail.com</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>USEFUL LINKS</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>OUR SERVICES</h3>
+      <ul>
+        <li><a href="/services/carrer.html">Career Counseling</a></li>
+        <li><a href="/services/resume.html">Resume Building</a></li>
+        <li><a href="/services/mock.html">Mock Interviews</a></li>
+        <li><a href="/services/placement.html">Placement Assistance</a></li>
+        <li><a href="/services/workshop.html">Workshop & Training</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>ABOUT TRAINING & PLACEMENT</h3>
+      <p>In the information technology industry, where change is the only constant, we have stood the test of time by providing a wide range of IT services at top quality & low cost.</p>
+      <div class="social-links">
+        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FOOTER BOTTOM -->
+<div class="footer-bottom">
+  <p>&copy; 2014 - Training & Placement. All Rights Reserved.</p>
+</div>
+
+<!-- MODAL -->
+<div id="courseModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+  </div>
+</div>
+  
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+
+  //enroll form
+    function showMessage(event) {
+    event.preventDefault(); // Prevent actual form submission
+    alert("Thank you! We will contact you soon.");
+  }
+
+  // Wait until DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize AOS animations
+    AOS.init();
+
+    // Module modal content
+    const moduleData = {
+      1: {
+        title: "Module 1: Introduction to Java", 
+        content: `<p>Java is a class-based, object-oriented programming language...<br>Java applications are compiled to byte code that can run on any Java Virtual Machine...</p>`
+      },
+      2: { 
+        title: "Module 2: OOPs Concepts", 
+        content: "<p>Classes, objects, inheritance, polymorphism.</p>"
+      },
+      3: { 
+        title: "Module 3: Exception Handling", 
+        content: "<p>try/catch/finally, throw, throws, custom exceptions.</p>"
+      },
+      4: {
+        title: "Module 4: JDBC", 
+        content: "<p>Connect Java with MySQL using JDBC drivers.</p>"
+      },
+      5: {
+        title: "Module 5: Servlets and JSP", 
+        content: "<p>Server-side Java for dynamic web content.</p>"
+      },
+      6: {
+        title: "Module 6: Spring Boot", 
+        content: "<p>REST APIs, Spring annotations, starter projects.</p>"
+      },
+      7: {
+        title: "Module 7: Java Multithreading", 
+        content: "<p>Threads, synchronization, concurrency.</p>"
+      },
+      8: { 
+        title: "Module 8: Java Networking", 
+        content: "<p>Socket programming, URL, TCP/IP communication.</p>"
+      }
+    };
+
+    // Show module details in modal
+    window.openModuleModal = function(id) {
+      const modal = document.getElementById("moduleModal");
+      const contentDiv = document.getElementById("moduleContent");
+      const data = moduleData[id];
+      if (data && modal && contentDiv) {
+        contentDiv.innerHTML = `<h3>${data.title}</h3>${data.content}`;
+        modal.style.display = "flex";
+      }
+    };
+
+    window.closeModuleModal = function() {
+      const modal = document.getElementById("moduleModal");
+      if (modal) modal.style.display = "none";
+    };
+
+    // Enquiry modal control
+    window.openEnquiryModal = function() {
+      const modal = document.getElementById("enquiryModal");
+      if (modal) modal.style.display = "flex";
+    };
+
+    window.closeEnquiryModal = function() {
+      const modal = document.getElementById("enquiryModal");
+      if (modal) modal.style.display = "none";
+    };
+
+    // Form submission handler
+    window.showMessage = function(event) {
+      event.preventDefault();
+      alert("Thank you! We will contact you soon.");
+    };
+
+    // Scroll to section smoothly
+    window.scrollToInfo = function(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    // Toggle dark mode
+    window.toggleDarkMode = function() {
+      document.body.classList.toggle("dark");
+    };
+  });
+</script>
+
+</body>
+</html>

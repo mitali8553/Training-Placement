@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Training & Placement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    
+   <style>
+    /* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  display: flex; /* Horizontal row */
+background: linear-gradient(135deg, rgb(21, 22, 22), rgba(64, 168, 228, 0.88));
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  gap: 2rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.dropdown-column h4 {
+  margin-bottom: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  border-bottom: 2px solidrgb(200, 216, 214);
+  padding-bottom: 4px;
+}
+
+.dropdown-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-column ul li {
+  margin-bottom: 0.6rem;
+}
+
+.dropdown-column ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-column ul li a:hover {
+  background-color:rgb(87, 133, 233);
+  color: #00695c;
+}
+
+
+/* Header */
+.header {
+  background-image: url('/images/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 350px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+}
+
+/* Navigation */
+.nav {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav a {
+  color: white;
+  padding: 0.5rem 1rem;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  background: #1f1f47;
+  border-radius: 5px;
+}
+
+/* Ensure content is above the glass layer */
+.main-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Main Section & Course Boxes */
+.main-section {
+  padding: 2rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.box-content {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box-content:hover {
+  transform: translateY(-5px);
+}
+
+.box-content img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Hero Section */
+.hero {
+  color: black;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+/* Info Boxes Section */
+.box-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.box {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.box:hover {
+  transform: scale(1.05);
+}
+
+.box img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+.box h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.box p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Why Choose Us Section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  background: #f0f0f0;
+}
+
+.feature-box {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+}
+
+.feature-box i {
+  font-size: 2rem;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #282828;
+  color: #fff;
+  padding: 60px 20px 20px;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-col h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.footer-col p,
+.footer-col ul {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #bbb;
+}
+
+.footer-col ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #00aaff;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icon {
+  font-size: 20px;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #00aaff;
+}
+
+.footer-bottom {
+  background-color: #212121;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  color: #bbb;
+  margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-col {
+    margin-bottom: 20px;
+  }
+
+  .nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: #1f1f47;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+    border-radius: 10px;
+    z-index: 999;
+  }
+
+  .nav ul.active {
+    display: flex;
+  }
+
+  .main-section,
+  .box-section,
+  .features-grid {
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .dropdown-content {
+    flex-direction: column;
+  }
+
+  .header {
+    height: auto;
+    padding: 3rem 1rem;
+  }
+}
+
+   </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="header-content">
+      <div class="hamburger" id="hamburger">☰</div>
+      <h1>Welcome to Training & Placement Website</h1>
+
+     <nav class="nav" id="nav">
+  <ul>
+    <li><a href="index">Home</a></li>      
+       <li class="dropdown">
+  <a href="#" id="courses-toggle">Courses</a>
+  <div class="dropdown-content" id="courses-dropdown">
+    <div class="dropdown-column">
+      <ul>
+        <li><a href="java.html">Java Developer</a></li>
+        <li><a href="full stack.html">Full Stack</a></li>
+        <li><a href="flutter.html">Flutter</a></li>
+      </ul>
+    </div>
+    <div class="dropdown-column">
+      <ul>
+        <li><a href="web.html">Web Developer</a></li>
+        <li><a href="cyber.html">Cyber Security</a></li>
+        <li><a href="data analyst.html">Data Analyst</a></li>
+      </ul>
+    </div>
+    <div class="dropdown-column">
+      <ul>
+        <li><a href="ml.html">Machine Learning</a></li>
+        <li><a href="iot.html">IoT</a></li>
+        <li><a href="devops.html">DevOps</a></li>
+      </ul>
+    </div>
+  </div>
+      <li><a href="about.html">About Us</a></li>      
+    <li><a href="services.html">Services</a></li>      
+    <li><a href="security.html">Security</a></li>   
+    <li><a href="contact.html">Contact Us</a></li>         
+</li>
+
+    </div>
+  </div>
+    
+      <!--main section-->      
+    <section class="main-section">
+      <h1 class="heading"> Best IT Job Oriented Courses</h1>
+      
+      <div class="box-container">
+        <div class="box-section">
+          <a href="java.html">
+            <div class="box-content">
+              <img src="/images/java.png" alt="Java Developer">
+              <h2>Java Developer</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    
+        <div class="box-section">
+          <a href="full stack.html">
+            <div class="box-content">
+              <img src="/images/fullstack.png" alt="Full Stack Developer">
+              <h2>Full Stack Developer</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    
+        <div class="box-section">
+          <a href="flutter.html">
+            <div class="box-content">
+              <img src="/images/flutter.png" alt="Flutter Developer">
+              <h2>Flutter Developer</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    
+        <div class="box-section">
+          <a href="web.html">
+            <div class="box-content">
+              <img src="/images/web.png" alt="Web Developer">
+              <h2>Web Developer</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    
+        <div class="box-section">
+          <a href="cyber.html">
+            <div class="box-content">
+              <img src="/images/cyber.png" alt="Cyber Security">
+              <h2>Cyber Security</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    
+        <div class="box-section">
+          <a href="data analyst.html">
+            <div class="box-content">
+              <img src="/images/data.png" alt="Data Analyst">
+              <h2>Data Analyst</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    
+        <div class="box-section">
+          <a href="ml.html">
+            <div class="box-content">
+              <img src="/images/ml.png" alt="Machine Learning">
+              <h2>Machine Learning</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    
+        <div class="box-section">
+          <a href="iot.html">
+            <div class="box-content">
+              <img src="/images/iot.png" alt="Internet of Things">
+              <h2>Internet of Things</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="box-section">
+          <a href="devops.html">
+            <div class="box-content">
+              <img src="/images/devops.png" alt="DevOps">
+              <h2>DevOps</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="box-section">
+          <a href="mern.html">
+            <div class="box-content">
+              <img src="/images/mern.png" alt="Mern Stack">
+              <h2>Mern Stack</h2>
+              <p class="box-info">Click to learn more</p>
+            </div>
+          </a>
+        </div>
+    </section>
+
+<!--training placement-->
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Welcome to Our Training & Placement Portal</h1>
+  <p>Empowering your career through skill development and industry connections.</p>
+</section>
+
+<!-- Box Section -->
+<div class="box-section">
+  <div class="box">
+    <img src="/images/lpt.png" alt="project training">
+    <h3>Live Project Training</h3>
+    <p>Hands-on experience with real-time projects guided by industry experts.</p>
+  </div>
+  <div class="box">
+    <img src="/images/mentor.png" alt="mentorship">
+    <h3>Expert Mentorship</h3>
+    <p>Personalized guidance to shape your career and upskill effectively.</p>
+  </div>
+  <div class="box">
+    <img src="/images/tie-ups.png" alt="tie-ups">
+    <h3>Company Tie-ups</h3>
+    <p>Direct connections with leading companies for better job opportunities.</p>
+  </div>
+  <div class="box">
+    <img src="/images/certification.png" alt="certifications">
+    <h3>Certification Support</h3>
+    <p>Preparation and support for globally recognized certifications in tech domains.</p>
+  </div>
+  <div class="box">
+    <img src="/images/placement.png" alt="Assistance">
+    <h3>Placement Assistance</h3>
+    <p>Dedicated placement cell to help you land interviews and secure job offers.</p>
+  </div>
+  <div class="box">
+    <img src="/images/resume.png" alt="resume">
+    <h3>Resume Building</h3>
+    <p>Craft professional resumes that highlight your strengths and technical skills.</p>
+  </div>
+  <div class="box">
+    <img src="/images/intern.png" alt="internship">
+    <h3>Internship Programs</h3>
+    <p>Gain real-world experience through structured internship opportunities.</p>
+  </div>
+  <div class="box">
+    <img src="/images/learning.png" alt="flexible learning">
+    <h3>Flexible Learning</h3>
+    <p>Learn at your own pace with weekend, weekday, and online class options.</p>
+  </div>
+  <div class="box">
+    <img src="/images/events.png" alt="access">
+    <h3>Tech Events Access</h3>
+    <p>Participate in webinars, hackathons, and industry meetups for exposure.</p>
+  </div>
+  <div class="box">
+    <img src="/images/soft-skill.png" alt="soft skills">
+    <h3>Soft Skills Training</h3>
+    <p>Improve communication, teamwork, and interview skills for workplace readiness.</p>
+  </div>
+</div>
+
+     <!-- Hero Section -->
+     <section class="hero">
+      <h1> Why Choose Us </h1>
+    </section>
+
+       <!--why choose us-->
+      <div class="features-grid" id="why-choose-us">        
+        <div class="feature-box">
+          <i class="fas fa-code"></i>
+          <h3>Project-Based Learning</h3>
+          <p>Work on real-world IT and cybersecurity projects to build hands-on expertise and practical problem-solving skills.</p>
+        </div>
+        
+        <div class="feature-box">
+          <i class="fas fa-briefcase"></i>
+          <h3>Internship & Project Guidance</h3>
+          <p>Industry-relevant internships and personalized mentorship to shape your professional journey.</p>
+        </div>
+        
+        <div class="feature-box">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <h3>Employability Training</h3>
+          <p>Technical training combined with soft skills development to enhance your job-readiness and confidence.</p>
+        </div>
+        
+        <div class="feature-box">
+          <i class="fas fa-users"></i>
+          <h3>Certified Trainers</h3>
+          <p>Learn from certified professionals with years of experience in IT services, security, and corporate training.</p>
+        </div>
+        
+        <div class="feature-box">
+          <i class="fas fa-cogs"></i>
+          <h3>Industry-Centric Curriculum</h3>
+          <p>Stay aligned with the latest technologies and practices through courses crafted by working professionals.</p>
+        </div>
+        
+        <div class="feature-box">
+          <i class="fas fa-clipboard-check"></i>
+          <h3>100% Placement Assistance</h3>
+          <p>Complete support from resume preparation to mock interviews and job placement drives.</p>
+        </div>
+        <div class="feature-box">
+          <i class="fas fa-award"></i>
+          <h3>Global Certifications</h3>
+          <p>Earn certifications recognized by industry leaders like Microsoft, AWS, Cisco, and CompTIA.</p>
+        </div>
+      
+        <div class="feature-box">
+          <i class="fas fa-bolt"></i>
+          <h3>Hackathon Exposure</h3>
+          <p>Participate in coding competitions and security challenges to boost innovation and teamwork skills.</p>
+        </div>
+      
+        <div class="feature-box">
+          <i class="fas fa-clock"></i>
+          <h3>24x7 Lab Access</h3>
+          <p>Practice anytime with round-the-clock access to fully-equipped labs and resources.</p>
+        </div>
+      
+        <div class="feature-box">
+          <i class="fas fa-user-graduate"></i>
+          <h3>Career Counseling</h3>
+          <p>Get personalized career guidance, profile reviews, and growth planning from industry experts.</p>
+        </div>
+      </div>  
+      </section>
+
+      <!-- Footer Start -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>CONTACT US</h3>
+      <p>Saptashringi Apartments, Lane, above Dominos, near Renuka Swaroop Girls High School, Perugate, Sadashiv Peth, Pune, Maharashtra 411030.</p>
+      <p><strong>Phone:</strong> +91 9271271636</p>
+      <p><strong>Email:</strong> training13@gmail.com</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>USEFUL LINKS</h3>
+      <ul>
+        <li><a href="index">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>OUR SERVICES</h3>
+      <ul>
+        <li><a href="/services/carrer.html">Career Counseling</a></li>
+        <li><a href="/services/resume.html">Resume Building</a></li>
+        <li><a href="/services/mock.html">Mock Interviews</a></li>
+        <li><a href="/services/placement.html">Placement Assistance</a></li>
+        <li><a href="/services/workshop.html">Workshop & Training</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>ABOUT TRAINING & PLACEMENT</h3>
+      <p>In the information technology industry, where change is the only constant, has stood the test of time by providing a long range of IT services at best quality & least cost.</p>
+      <div class="social-links">
+        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2014 - Training & Placement. All Rights Reserved.</p>
+  </div>
+</footer>
+        
+
+<div id="courseModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Swiper and AOS Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+  // Hamburger Toggle
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.nav');
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  }
+
+  //Smooth Scroll Script
+  document.querySelectorAll('.footer-col ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 50,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+
+  //dropdown
+  document.addEventListener("DOMContentLoaded", function () {
+  const icon = document.getElementById("icon");
+      const dropdown = document.getElementById("courses-dropdown");
+
+      dropdown-icon.addEventListener("click", function (e) {
+        e.preventDefault();
+        dropdown.classList.toggle("show");
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!dropdown.contains(event.target) && !dropdown-icon.contains(event.target)) {
+          dropdown.classList.remove("show");
+        }
+      });
+    });
+</script>
+
+</body>
+</html>

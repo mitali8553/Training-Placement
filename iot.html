@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internet Of Things Course</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+:root {
+  --bg: #ffffff;
+  --text: #222222;
+  --accent: #ff6600;
+  --card-bg: rgba(255, 255, 255, 0.1);
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #f0f0f0;
+  --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navigation */
+.nav {
+  width: 100%;
+  background-color: black;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  position: sticky; /* optional: keeps nav on top */
+  top: 0;
+  z-index: 1000;
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  color: white;
+  padding: 0.75rem 1.2rem;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.nav a:hover {
+  background: #1f1f47;
+}
+
+/* Responsive (Mobile View) */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.5rem 0;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav a {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Dark Mode Toggle */
+.toggle-dark {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card-bg);
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1000;
+}
+body.dark .toggle-dark {
+  background-color: #444;
+}
+
+/* Hero Section */
+.hero {
+  background: url('images/bgiot.jpg') no-repeat center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: black;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+form .btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+form .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Section Styling */
+section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Grid Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* WhatsApp Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 24px;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: var(--bg);
+  color: var(--text);
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  color: red;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer {
+  background-color: #282828;
+  color: #fff;
+  padding: 60px 20px 20px;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+  margin-right: 20px;
+}
+.footer-col h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: white;
+}
+.footer-col p,
+.footer-col ul {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #bbb;
+}
+.footer-col ul {
+  padding-left: 20px;
+}
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+.footer-col ul li a {
+  color: #bbb;
+  text-decoration: none;
+}
+.footer-col ul li a:hover {
+  color: blue;
+}
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+.social-icon {
+  font-size: 20px;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+.social-icon:hover {
+  color: blue;
+}
+.footer-bottom {
+  background-color: #212121;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* Info Section */
+.info {
+  background: var(--card-bg);
+  padding: 40px 20px;
+  margin: 40px auto;
+  border-radius: 20px;
+  max-width: 1000px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.info h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+.info-section {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* Features Grid */
+.container {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+.container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: var(--accent);
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+.feature-card {
+  background: var(--card-bg);
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  color: var(--text);
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+.feature-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: var(--accent);
+}
+.feature-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.feature-description {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-col {
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .section-title,
+  .info h2,
+  .container h1 {
+    font-size: 1.6rem;
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+  }
+
+  .info {
+    padding: 20px 15px;
+  }
+
+  .feature-icon {
+    font-size: 32px;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+  }
+
+  .feature-description {
+    font-size: 13px;
+  }
+}
+  </style>
+
+</head>
+<body>
+          <nav class="nav" id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+
+  <div class="toggle-dark" onclick="toggleDarkMode()">🌙 Toggle</div>
+
+  <div class="hero" data-aos="fade-in">
+    <div class="glass" data-aos="zoom-in" data-aos-delay="300">
+      <h1>IoT Course</h1>
+      <p>Master IoT concepts, communication protocols, cloud integration, and security principles with hands-on projects in our Advanced IoT Development course!</p>
+      <button class="btn" onclick="openEnquiryModal()" data-aos="fade-up" data-aos-delay="500">Enroll Now</button>
+    </div>
+  </div>
+
+  <section data-aos="fade-up" data-aos-duration="1200">
+    <h2>Course Modules</h2>
+    <div class="grid">
+      <!-- Repeat this for each module -->
+      <div class="card" onclick="openModule(1)">
+        <h3>Module 1: Introduction to IoT</h3>
+        <p>Understand the fundamentals of the Internet of Things (IoT) and its applications across various industries.</p>
+      </div>
+      <div class="card" onclick="openModule(2)">
+        <h3>Module 2: IoT Hardware and Sensors</h3>
+        <p>Learn about the key hardware components, including sensors, actuators, and microcontrollers used in IoT systems.</p>
+      </div>
+      <div class="card" onclick="openModule(3)">
+        <h3>Module 3: Communication Protocols in IoT</h3>
+        <p>Explore various communication protocols like MQTT, HTTP, CoAP, and their role in IoT ecosystems.</p>
+      </div>
+      <div class="card" onclick="openModule(4)">
+        <h3>Module 4: Cloud Integration for IoT</h3>
+        <p>Learn how to integrate IoT devices with cloud platforms like AWS IoT, Azure IoT, or Google Cloud IoT for data storage and analysis.</p>
+      </div>
+      <div class="card" onclick="openModule(5)">
+        <h3>Module 5: IoT Security</h3>
+        <p>Understand security concerns in IoT, including encryption, authentication, and secure data transmission.</p>
+      </div>
+      <div class="card" onclick="openModule(6)">
+        <h3>Module 6: Data Analytics in IoT</h3>
+        <p>Learn how to collect, process, and analyze data from IoT devices to derive actionable insights using analytics tools.</p>
+      </div>
+      <div class="card" onclick="openModule(7)">
+        <h3>Module 7: Building IoT Applications</h3>
+        <p>Develop real-world IoT applications, connecting sensors and devices, processing data, and displaying results on dashboards.</p>
+      </div>
+      <div class="card" onclick="openModule(8)">
+        <h3>Module 8: IoT Deployment and Maintenance</h3>
+        <p>Learn the deployment strategies and best practices for managing and maintaining large-scale IoT systems in the field.</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <div class="modal" id="enquiryModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeEnquiryModal()">✖</span>
+      <h2>Enroll Now</h2>
+      <p>Please fill in your details and we'll contact you shortly.</p>
+      <form>
+        <input type="text" placeholder="Your Name" required><br><br>
+        <input type="email" placeholder="Your Email" required><br><br>
+        <textarea placeholder="Message / Course Interest" required></textarea><br><br>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">💬</a>
+
+  <div class="modal" id="moduleModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">✖</span>
+      <div id="moduleContent"></div>
+    </div>
+
+  </div>
+      <!-- Information Panel -->
+      <div class="info">
+        <h2>Roadmap Breakdown</h2>
+        <p id="setup" class="info-section"><strong>Setup & Tools:</strong> Install essential tools like Arduino IDE, Raspberry Pi OS, and IoT SDKs. Set up your development environment.</p>
+        <p id="hardware" class="info-section"><strong>IoT Hardware & Sensors:</strong> Understand IoT components, including sensors, microcontrollers (e.g., Raspberry Pi, Arduino), and actuators used in real-world applications.</p>
+        <p id="communication" class="info-section"><strong>Communication Protocols:</strong> Explore protocols such as MQTT, CoAP, HTTP, and BLE for communication between IoT devices and servers.</p>
+        <p id="cloud" class="info-section"><strong>Cloud Integration:</strong> Learn to integrate IoT devices with cloud platforms like AWS IoT, Microsoft Azure, and Google Cloud to store and process data.</p>
+        <p id="security" class="info-section"><strong>IoT Security:</strong> Explore IoT-specific security challenges, including secure data transmission, encryption, and authentication techniques for IoT devices.</p>
+        <p id="analytics" class="info-section"><strong>Data Analytics & AI:</strong> Learn how to analyze data collected from IoT devices and apply machine learning and AI for predictive analytics and decision-making.</p>
+      </div>
+    </div>
+    
+    <!-- Key Features -->
+    <div class="container">
+      <h1>Key Features of IoT Development</h1>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <div class="feature-title">End-to-End IoT Solutions</div>
+          <div class="feature-description">Develop both hardware and software components for IoT applications, from sensors to cloud integration.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <div class="feature-title">Hands-On Hardware Experience</div>
+          <div class="feature-description">Work with hardware components like microcontrollers (Raspberry Pi, Arduino), sensors, and actuators in real-world projects.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📡</div>
+          <div class="feature-title">Communication Protocols</div>
+          <div class="feature-description">Learn and implement various communication protocols like MQTT, HTTP, and CoAP used in IoT devices and networks.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">IoT Security Practices</div>
+          <div class="feature-description">Implement strong security measures for IoT systems, ensuring data integrity and secure device authentication.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <div class="feature-title">Cloud Integration</div>
+          <div class="feature-description">Store and analyze data from IoT devices using cloud platforms like AWS IoT, Azure IoT, or Google Cloud.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <div class="feature-title">Project-Based Learning</div>
+          <div class="feature-description">Create real-world IoT projects like smart home systems, connected devices, and data analytics dashboards.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Data Analytics & AI</div>
+          <div class="feature-description">Analyze IoT data and apply machine learning algorithms to gain actionable insights and predictions.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💼</div>
+          <div class="feature-title">Industry-Ready Skills</div>
+          <div class="feature-description">Gain skills in IoT development that are highly valued in industries like smart cities, healthcare, agriculture, and automation.</div>
+        </div>
+      </div>
+    </div>
+        
+  <!--footer-->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>CONTACT US</h3>
+      <p>Saptashringi Apartments, Lane, above Dominos, near Renuka Swaroop Girls High School, Perugate, Sadashiv Peth, Pune, Maharashtra 411030.</p>
+      <p><strong>Phone:</strong> +91 9271271636</p>
+      <p><strong>Email:</strong> training13@gmail.com</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>USEFUL LINKS</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer Policy</a></li>
+      </ul>
+    </div>
+   
+ <div class="footer-col">
+  <h3>OUR SERVICES</h3>
+  <ul>
+    <li><a href="/services/carrer.html">Career Counseling</a></li>
+    <li><a href="/services/resume.html">Resume Building</a></li>
+    <li><a href="/services/mock.html">Mock Interviews</a></li>
+    <li><a href="/services/placement.html">Placement Assistance</a></li>
+    <li><a href="/services/workshop.html">Workshop & Training</a></li>
+  </ul>
+</div>
+
+    <div class="footer-col">
+      <h3>ABOUT TRAINING & PLACEMENT</h3>
+      <p>In the information technology industry, where change is the only constant, has stood the test of time by providing a long range of IT services at best quality & least cost.</p>
+      <div class="social-links">
+        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-bottom">
+    <p>&copy; 2014 - Training & Placement . All Rights Reserved.</p>
+  </footer>
+</footer>
+
+<div id="courseModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+  </div>
+</div>
+  
+
+  <script>
+    function scrollToInfo(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  //enroll form
+    function showMessage(event) {
+    event.preventDefault(); // Prevent actual form submission
+    alert("Thank you! We will contact you soon.");
+  }
+
+  // Initialize AOS animations
+  AOS.init();
+
+  // Toggle dark mode
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+  }
+
+  const moduleData = {
+    1: {
+      title: "Module 1: Introduction to Java", 
+      content: "<p>Java is a class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.<br> It is intended to let application developers Write Once and Run Anywhere (WORA), meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.<br> Java was developed by James Gosling at Sun Microsystems Inc. in May 1995 and later acquired by Oracle Corporation and is widely used for developing applications for desktop, web, and mobile devices.<br>Java is known for its simplicity, robustness, and security features, making it a popular choice for enterprise-level applications.<br> Java applications are compiled to byte code that can run on any Java Virtual Machine.<br> The syntax of Java is similar to C/C++.Java makes writing, compiling, and debugging programming easy.<br>It helps to create reusable code and modular programs</p>"
+    },
+    2: { 
+      title: "Module 2: OOPs Concepts", 
+      content: "<p>Classes, objects, inheritance, polymorphism.</p>"
+    },
+    3: { 
+      title: "Module 3: Exception Handling", 
+      content: "<p>try/catch/finally, throw, throws, custom exceptions.</p>"
+    },
+    4: {
+      title: "Module 4: JDBC", 
+      content: "<p>Connect Java with MySQL using JDBC drivers.</p>"
+    },
+    5: {
+      title: "Module 5: Servlets and JSP", 
+      content: "<p>Server-side Java for dynamic web content.</p>"
+    },
+    6: {
+      title: "Module 6: Spring Boot", 
+      content: "<p>REST APIs, Spring annotations, starter projects.</p>"
+    },
+    7: {
+      title: "Module 7: Java Multithreading", 
+      content: "<p>Threads, synchronization, concurrency.</p>"
+    },
+    8: { 
+      title: "Module 8: Java Networking", 
+      content: "<p>Socket programming, URL, TCP/IP communication.</p>"
+    }
+  };
+
+  function openModuleModal(id) {
+    const modal = document.getElementById("moduleModal");
+    const contentDiv = document.getElementById("moduleContent");
+    const data = moduleData[id];
+    contentDiv.innerHTML = `<h3>${data.title}</h3>${data.content}`;
+    modal.style.display = "flex";
+  }
+
+  function closeModuleModal() {
+    document.getElementById("moduleModal").style.display = "none";
+  }
+
+  function openEnquiryModal() {
+    document.getElementById('enquiryModal').style.display = 'flex';
+  }
+
+  function closeEnquiryModal() {
+    document.getElementById('enquiryModal').style.display = 'none';
+  }
+
+  function openModule(moduleId) {
+    // For demonstration purposes, you can replace this with actual functionality
+    alert("You clicked on Module " + moduleId);
+    // You could also display a modal or navigate to a detailed page here.
+  }
+
+</script>
+
+</body>
+</html>
